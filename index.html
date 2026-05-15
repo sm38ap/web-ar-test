@@ -27,13 +27,45 @@
 
 <body>
 
+<body style="margin:0;">
+
 <model-viewer
+  id="model"
   src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
   ar
+  ar-modes="scene-viewer webxr quick-look"
   camera-controls
   auto-rotate
   style="width:100vw; height:100vh;">
 </model-viewer>
+
+<button id="ar-button"
+style="
+position:absolute;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+padding:15px 30px;
+font-size:20px;
+z-index:10;">
+ARで見る
+</button>
+
+<script>
+document.getElementById('ar-button')
+.addEventListener('click', async () => {
+
+const modelViewer =
+document.getElementById('model');
+
+if (modelViewer.canActivateAR) {
+  modelViewer.activateAR();
+} else {
+  alert("AR未対応です");
+}
+
+});
+</script>
 
 </body>
 
